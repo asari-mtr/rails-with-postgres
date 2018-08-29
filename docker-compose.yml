@@ -1,5 +1,16 @@
 version: "3"
 services:
+  app:
+    build: .
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: "postgresql://${USER}@db:5432"
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/src/project
+    links:
+      - db
   db:
     image: postgres:9.6
     ports:
